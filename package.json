@@ -1,0 +1,36 @@
+{
+  "name": "sapling",
+  "version": "0.0.0",
+  "description": "Convert an array of parent-child relational objects to a tree",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js",
+    "watch": "mocha --watch test.js",
+    "coverage": "istanbul cover ./node_modules/.bin/_mocha -- test.js",
+    "test-travis": "istanbul cover node_modules/.bin/_mocha --report lcovonly -- test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Moveo/sapling.git"
+  },
+  "devDependencies": {
+    "assume": "0.0.x",
+    "istanbul": "0.3.x",
+    "mocha": "2.1.x",
+    "pre-commit": "0.0.x"
+  },
+  "keywords": [
+    "tree",
+    "array",
+    "convert",
+    "reduce",
+    "parent",
+    "child"
+  ],
+  "author": "Martijn Swaagman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Moveo/sapling/issues"
+  },
+  "homepage": "https://github.com/Moveo/sapling"
+}
