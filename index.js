@@ -40,36 +40,60 @@ function Sapling(data, key, ref) {
 //
 // Define the iterator as non-enumarable and -configurable.
 //
-Object.defineProperty(Sapling.prototype, 'iterate', {
-  configurable: false,
-  enumerable: false,
+Object.defineProperties(Sapling.prototype, {
+  get: {
+    configurable: false,
+    enumerable: false,
 
-  /**
-   * Depth first iterator. Call `next` to walk through the entire tree.
-   * Will return child Node objects if available otherwise walks up the
-   * tree to return Parent Node Object.s
-   *
-   * @param {Object} parent Parent node of the current child.
-   * @return {Object} Child node.
-   */
-  value: function iterate(parent) {
-    var node = this
-      , i = 0
-      , key;
+    /**
+     * Simple get/search that uses the iterator.
+     *
+     * @param {String} name Node name.
+     * @return {Object} Node.
+     */
+    value: function get(name) {
+      var node = this.iterate();
+      name = name.toString();
 
-    Object.defineProperty(node, 'next', {
-      configurable: false,
-      enumerable: false,
-      value: function next() {
-        var child = node.children[i++];
+      do {
+        if (node.name === name) {
+          return node;
+        }
+      } while (node = node.next())
+    }
+  },
 
-        if (!child && !parent) return void 0;
-        if (!child) return parent;
-        return iterate.call(child, node);
-      }
-    });
+  iterate: {
+    configurable: false,
+    enumerable: false,
 
-    return node;
+    /**
+     * Depth first iterator. Call `next` to walk through the entire tree.
+     * Will return child Node objects if available otherwise walks up the
+     * tree to return Parent Node Object.s
+     *
+     * @param {Object} parent Parent node of the current child.
+     * @return {Object} Child node.
+     */
+    value: function iterate(parent) {
+      var node = this
+        , i = 0
+        , key;
+
+      Object.defineProperty(node, 'next', {
+        configurable: true,
+        enumerable: false,
+        value: function next() {
+          var child = node.children[i++];
+
+          if (!child && !parent) return void 0;
+          if (!child) return parent;
+          return iterate.call(child, node);
+        }
+      });
+
+      return node;
+    }
   }
 });
 
