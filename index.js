@@ -3,9 +3,11 @@
 /**
  * Convert an array of parent-child relational objects to a tree.
  *
+ * @Constructor
  * @param {Array} data Collection objects with parent-child relations.
  * @param {String} key Name of the property that has the name or id of the object.
  * @param {String} ref Name of the property that references the parent, see key.
+ * @api public
  */
 module.exports = function Sapling(data, key, ref) {
   if (!this) return new Sapling(data, key, ref);
@@ -41,7 +43,7 @@ module.exports = function Sapling(data, key, ref) {
  * Clone objects in the provided array.
  *
  * @param {Array} array Collection of Nodes.
- * @return {Array} Deep cloned collection.
+ * @returns {Array} Deep cloned collection.
  * @api private
  */
 function clone(array) {
