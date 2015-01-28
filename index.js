@@ -2,14 +2,14 @@
 
 /**
  * Convert an array of parent-child relational objects to a tree.
- * Minimal implementation that provides a depth-first iterator.
  *
  * @param {Array} data Collection objects with parent-child relations.
  * @param {String} key Name of the property that has the name or id of the object.
  * @param {String} ref Name of the property that references the parent, see key.
  */
-function Sapling(data, key, ref) {
+module.exports = function Sapling(data, key, ref) {
   if (!this) return new Sapling(data, key, ref);
+  data = clone(data);
 
   //
   // Number of iterations in the worst case scenario: (n * 2 - 1).
@@ -35,69 +35,33 @@ function Sapling(data, key, ref) {
       else data.unshift(datum);
     }
   }
-}
+};
 
-//
-// Define the iterator as non-enumarable and -configurable.
-//
-Object.defineProperties(Sapling.prototype, {
-  get: {
-    configurable: false,
-    enumerable: false,
+/**
+ * Clone objects in the provided array.
+ *
+ * @param {Array} array Collection of Nodes.
+ * @return {Array} Deep cloned collection.
+ * @api private
+ */
+function clone(array) {
+  var i = array.length
+    , target = new Array(i)
+    , obj, key;
 
-    /**
-     * Simple get/search that uses the iterator.
-     *
-     * @param {String} name Node name.
-     * @return {Object} Node.
-     */
-    value: function get(name) {
-      var node = this.iterate();
-      name = name.toString();
+  while (i--) {
+    obj = {};
 
-      do {
-        if (node.name === name) {
-          return node;
-        }
-      } while (node = node.next())
+    for (key in array[i]) {
+      if (array[i].hasOwnProperty(key)) {
+        obj[key] = Array.isArray(array[i][key])
+          ? clone(array[i][key])
+          : array[i][key];
+      }
     }
-  },
 
-  iterate: {
-    configurable: false,
-    enumerable: false,
-
-    /**
-     * Depth first iterator. Call `next` to walk through the entire tree.
-     * Will return child Node objects if available otherwise walks up the
-     * tree to return Parent Node Object.s
-     *
-     * @param {Object} parent Parent node of the current child.
-     * @return {Object} Child node.
-     */
-    value: function iterate(parent) {
-      var node = this
-        , i = 0
-        , key;
-
-      Object.defineProperty(node, 'next', {
-        configurable: true,
-        enumerable: false,
-        value: function next() {
-          var child = node.children[i++];
-
-          if (!child && !parent) return void 0;
-          if (!child) return parent;
-          return iterate.call(child, node);
-        }
-      });
-
-      return node;
-    }
+    target[i] = obj;
   }
-});
 
-//
-// Expose the module.
-//
-module.exports = Sapling;
+  return target;
+}

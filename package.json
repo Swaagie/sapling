@@ -1,6 +1,6 @@
 {
   "name": "sapling",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Convert an array of parent-child relational objects to a tree",
   "main": "index.js",
   "scripts": {
