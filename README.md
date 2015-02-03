@@ -1,10 +1,10 @@
 # Sapling
 
-[![Version npm][version]](http://browsenpm.org/package/sapling)[![Build Status][build]](https://travis-ci.org/Moveo/sapling)[![Dependencies][david]](https://david-dm.org/moveo/sapling)[![Coverage Status][cover]](https://coveralls.io/r/moveo/sapling?branch=master)
+[![Version npm][version]](http://browsenpm.org/package/sapling)[![Build Status][build]](https://travis-ci.org/Moveo/sapling)[![Dependencies][david]](https://david-dm.org/Moveo/sapling)[![Coverage Status][cover]](https://coveralls.io/r/Moveo/sapling?branch=master)
 
 [version]: http://img.shields.io/npm/v/sapling.svg?style=flat-square
 [build]: http://img.shields.io/travis/Moveo/sapling/master.svg?style=flat-square
-[david]: https://img.shields.io/david/moveo/sapling.svg?style=flat-square
+[david]: https://img.shields.io/david/Moveo/sapling.svg?style=flat-square
 [cover]: http://img.shields.io/coveralls/Moveo/sapling/master.svg?style=flat-square
 
 Convert an array of parent-child relational objects to a tree.
@@ -22,7 +22,7 @@ properties `name` and `parent` are used by default to identify each node.
 
 ```js
 var Sapling = require('sapling')
-  , sapling = new Sapling([{\
+  , sapling = new Sapling([{
         name: 'node1'
       }, {
         name: 'node2',
@@ -30,7 +30,7 @@ var Sapling = require('sapling')
       }]);
 ```
 
-Will result in the following tree:
+This will result in the following tree:
 
 ```js
 {
@@ -43,8 +43,9 @@ Will result in the following tree:
 }
 ```
 
-If nodes and the parent are identified by different properties than pass
-those as arguments to `Sapling`.
+If nodes and the parent are identified by different properties then
+supply the names as arguments to `Sapling`. The `id` as second argument
+and the `parent` reference as third argument.
 
 ```js
 var Sapling = require('sapling')
