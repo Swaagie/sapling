@@ -1,4 +1,4 @@
-'ust strict';
+'use strict';
 
 var assume = require('assume')
   , Sapling = require('./')
@@ -14,10 +14,6 @@ var data = [{
 }];
 
 describe('Sapling', function () {
-  afterEach(function () {
-    sapling = null;
-  });
-
   describe('is module', function () {
     it('which has a constructor', function () {
       assume(Sapling).to.be.a('function');
@@ -47,7 +43,7 @@ describe('Sapling', function () {
         name: '3',
         parent: 'first',
         additional: [{ test: 'test' }]
-      })
+      });
 
       sapling = new Sapling(data);
       assume(sapling.children[0].additional[0]).to.have.property('test', 'test');
