@@ -11,7 +11,10 @@
  */
 module.exports = function Sapling(data, key, ref) {
   if (!this) return new Sapling(data, key, ref);
-  data = clone(data);
+  key = key || 'name';
+  ref = ref || 'parent';
+
+  data = clone(data || []);
 
   //
   // Number of iterations in the worst case scenario: (n * 2 - 1).
