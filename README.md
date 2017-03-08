@@ -1,5 +1,7 @@
 # Sapling
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Swaagie/sapling.svg)](https://greenkeeper.io/)
+
 [![Version npm][version]](http://browsenpm.org/package/sapling)[![Build Status][build]](https://travis-ci.org/Moveo/sapling)[![Dependencies][david]](https://david-dm.org/Moveo/sapling)[![Coverage Status][cover]](https://coveralls.io/r/Moveo/sapling?branch=master)
 
 [version]: http://img.shields.io/npm/v/sapling.svg?style=flat-square

@@ -14,10 +14,10 @@
     "url": "git@github.com:Moveo/sapling.git"
   },
   "devDependencies": {
-    "assume": "0.0.x",
-    "istanbul": "0.3.x",
-    "mocha": "2.1.x",
-    "pre-commit": "0.0.x"
+    "assume": "~1.4.1",
+    "istanbul": "~0.4.5",
+    "mocha": "~3.2.0",
+    "pre-commit": "~1.2.2"
   },
   "keywords": [
     "tree",
